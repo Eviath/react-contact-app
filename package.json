@@ -4,6 +4,7 @@
   "homepage": "https://eviath.github.io/react-contact-app/",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "react": "^16.6.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.6.0",

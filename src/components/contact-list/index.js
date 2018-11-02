@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react'
 import ContactForm from './contactForm.jsx';
 import { List } from 'semantic-ui-react'
 import './index.css';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 export default class ContactsList extends React.Component {
 
