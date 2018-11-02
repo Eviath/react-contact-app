@@ -1,6 +1,9 @@
-.App {
-  text-align: center;
+ul.ui.contact-list li{
+list-style-type: none !important;
 }
+li.ui.contact-list{
+  list-style-type: none !important;
+  }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
