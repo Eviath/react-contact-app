@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react'
 import ContactForm from './contactForm.jsx';
 import { List } from 'semantic-ui-react'
 import './index.css';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class ContactsList extends React.Component {
 
@@ -38,7 +38,6 @@ handleChange = (event) => {
   const newContact = {
     ...contact,
     [name]: value,
-    id: keyval,
     key: keyval,
   };
 
@@ -65,8 +64,10 @@ addItem = (event) => {
   const contacts = this.state.contacts;
   const newContacts = Array.from(contacts);
   newContacts.push(contact);
+  const keyval = Date.now();
   this.setState({
-    contacts: newContacts
+    contacts: newContacts,
+    contact: {id: keyval}
   });
   console.log(contact)
   event.preventDefault();
@@ -81,26 +82,35 @@ render(){
 
   const Contact = contact => {
     const imgUrl = `https://api.adorable.io/avatars/55/typeofweb3.png`;
-      return <List.Item key={contact.id} onClick={() => this.deleteItem(contact.id)} >
+    
+      return   <List.Item key={contact.id} onClick={() => this.deleteItem(contact.id)} >
         <img alt="smng" src={imgUrl} className="ui mini rounded image" />
         <List.Content>
           <h4 className="header">{contact.title}</h4>
           <div className="description">{contact.content}</div>
         </List.Content>
         </List.Item>
-     
+ 
     }
 
   const contacts = this.state.contacts.map(contact => {
     return (
+
+
+      
       <Contact 
       key={contact.key}
         {...contact}
         // category={post.category}
       />
+
+
+
     );
   });
 
+  const contactsLength =  this.state.contacts.length;
+  
   
       return (
   
@@ -111,7 +121,7 @@ render(){
             <a href="#" className="header item">
   
              <Icon name='address card outline' />
-              Lista kontaktów
+              Lista kontaktów {contactsLength}
             </a>
             <div className="header item">
               <button onClick={this.handleClick} className="ui button">Dodaj</button>
@@ -126,7 +136,14 @@ render(){
   
   
       
-          <List animated selection divided relaxed>{contacts}</List>
+          <List animated selection divided relaxed> 
+ 
+          {contacts}
+      
+     
+          
+          
+          </List>
 
      </div>
   

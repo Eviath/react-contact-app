@@ -1,11 +1,9 @@
-
-
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
 
 export default class ContactForm extends React.Component {
- 
+
   render() {
 return (
 <div className="contact">
