@@ -27,11 +27,15 @@ export default class MenuUI extends Component {
           <Menu.Menu position='right'>
             <Menu.Item
               name='github'
+              target="_blank"
+              href='https://github.com/Eviath'
               active={activeItem === 'github'}
               onClick={this.handleItemClick}
             />
             <Menu.Item
               name='eviathos'
+              target="_blank"
+              href='https://eviathos.pl'
               active={activeItem === 'eviathos'}
               onClick={this.handleItemClick}
             />
