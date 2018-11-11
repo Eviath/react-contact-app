@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react'
 import './index.css';
 
 export default class MenuUI extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: 'kontakty' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -13,17 +13,6 @@ export default class MenuUI extends Component {
     return (
       <div className="ui container">
         <Menu inverted secondary>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item
-            name='about'
-            active={activeItem === 'about'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='more'
-            active={activeItem === 'more'}
-            onClick={this.handleItemClick}
-          />
           <Menu.Menu position='right'>
             <Menu.Item
               name='github'

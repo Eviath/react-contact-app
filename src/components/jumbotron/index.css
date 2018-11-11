@@ -1,8 +1,8 @@
 .jumbotron {
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .ui.header{
-padding-top: 20px;
+margin-top: -10px;
 }
 

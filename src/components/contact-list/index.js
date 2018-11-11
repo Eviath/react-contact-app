@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import { List } from 'semantic-ui-react'
 import './index.css';
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Form, Label } from 'semantic-ui-react'
 
 export default class ContactsList extends React.Component {
 
@@ -12,8 +12,36 @@ export default class ContactsList extends React.Component {
 
 
   this.state = {
-      contacts: [],
-      contact: {title:'', content:'', key:'', id:''},
+      contacts: [{
+        title: 'Jacek',
+        content: '732011132',
+        key: '234235235325',
+        id: '325325235324',
+        img: 'https://api.adorable.io/avatars/55/typeofweb1.png'
+      },
+    {
+      title: 'Anna',
+        content: '462342533',
+        key: '23423423325',
+        id: '325342342235324',
+        img: 'https://api.adorable.io/avatars/55/typeofweb2.png'
+    },
+    {
+      title: 'Marcin',
+        content: 'gmail@gmail.com',
+        key: '2342233423325',
+        id: '3253423232342235324',
+        img: 'https://api.adorable.io/avatars/55/typeofweb3.png'
+    },
+    {
+      title: 'Daniel',
+        content: 'daniel#2324',
+        key: '2342637323423325',
+        id: '3253454542342235324',
+        img: 'https://api.adorable.io/avatars/55/typeofweb4.png'
+    }],
+
+      contact: {title:'', content:'', key:'', id:'', img:'', createdAt: ''},
       showComp: false,
       errors: [],
   }
@@ -33,13 +61,6 @@ handleValidation(){
      errors["title"] = "Nazwa nie może być pusta.";
   }
 
-  if(typeof contact["title"] !== "undefined"){
-     if(!contact["title"].match(/^[a-zA-Z]+$/)){
-        formIsValid = false;
-        errors["title"] = "W nazwie mogą być tylko litery.";
-     }        
-  }
-
 // content validation
   if(!contact["content"]){
     formIsValid = false;
@@ -56,9 +77,16 @@ handleValidation(){
 
 
 // show form component on button click "DODAJ"
-handleClick = () => {
+handleCompShow = () => {
   this.setState({
      showComp: true,
+ })
+}
+
+// hide form component on button click "Lista Kontaktów"
+handleCompHide = () => {
+  this.setState({
+     showComp: false,
  })
 }
 
@@ -74,14 +102,32 @@ handleChange = (event) => {
   const value = event.target.value;
   const { contact } = this.state;
   const keyval = Date.now();
+
+  const randomNum = Math.floor((Math.random() * 100) + 1);;
   const newContact = {
     ...contact,
     [name]: value,
     key: keyval,
+    id: keyval,
+    img: `https://api.adorable.io/avatars/55/typeofweb${randomNum}.png`,
   };
+
 
   // set input as contact state
   this.setState({ contact: newContact });
+
+
+}
+
+
+addDate(){
+  const time = new Date().toLocaleDateString();
+  const date = new Date().toLocaleTimeString();
+
+
+  this.setState({
+    contact: {createdAt: `${time} ${date}`},
+  });
 }
 
 
@@ -101,23 +147,29 @@ deleteItem = key => {
 // form submit
 addItem = (event) => {
 
+  this.addDate()
+
   if(this.handleValidation()){
+
 
     // submit form on successfull validation
     const contact = this.state.contact;
     const contacts = this.state.contacts;
+
     const newContacts = Array.from(contacts);
-    const keyval = Date.now();
+
     newContacts.push(contact);
+
     this.setState({
+      ...contacts,
       contacts: newContacts,
-      contact: {id: keyval}
     });
 
+
     event.preventDefault();
-    event.target.reset();
+ 
 
-
+console.log(contact)
  }else{
   
     // validation not successfull, stop form submit
@@ -133,15 +185,15 @@ addItem = (event) => {
 render(){
 
   const { showComp } = this.state;
-
+ 
 
   const Contact = contact => {
-    const imgUrl = `https://api.adorable.io/avatars/55/typeofweb3.png`;
     
       return   <List.Item key={contact.id} onClick={() => this.deleteItem(contact.id)} >
-        <img alt="smng" src={imgUrl} className="ui mini rounded image" />
+        <img alt="smng" src={contact.img} className="ui mini rounded image" />
         <List.Content>
           <h4 className="header">{contact.title}</h4>
+          <h4 className="header">{contact.createdAt}</h4>
           <div className="description">{contact.content}</div>
         </List.Content>
         </List.Item>
@@ -164,11 +216,10 @@ render(){
     );
   });
 
-  // return contacts array length // number of contacts
-  const contactsLength =  this.state.contacts.length;
-
-     const stateTitle = this.state.errors.title;
-     const stateContent = this.state.errors.content;
+    // return contacts array length // number of contacts
+    const contactsLength =  this.state.contacts.length;
+    const stateTitle = this.state.errors.title;
+    const stateContent = this.state.errors.content;
 
       return (
   
@@ -177,15 +228,24 @@ render(){
           <header className="ui menu">
           <nav className="ui container">
 
-            <a href="#" className="header item">
+            <a onClick={this.handleCompHide} href="#" className="header item">
              <Icon name='address card outline' />
-              Lista kontaktów {contactsLength}
+              Lista kontaktów    
             </a>
 
-            <div className="header item">
-              <button onClick={this.handleClick} className="ui button">Dodaj</button>
+            <div className="header  item">
+            <a>
+              <Label >
+              <Icon name='address card outline' />
+                {contactsLength}
+              </Label>
+            </a>
             </div>
-         
+
+            <div className="header right item">
+              <button onClick={this.handleCompShow} className="ui button">Dodaj</button>
+            </div>
+
           </nav>
         </header>
          
@@ -198,36 +258,29 @@ render(){
                         <Form error onSubmit={this.addItem}>
                             <Form.Field>
 
-                            {stateTitle  && 
-                            <Message
-                              error
-                              header='Nazwa'
-                              content={stateTitle}
-                            />}
-
                             <label>Nazwa</label>
+                            
                             <Form.Input
-                              error={stateTitle}
                               placeholder="Nazwa"
                               type="text"
                               name="title"
+                              value={this.state.contact.title}
                               onChange={this.handleChange}/> 
+                              {stateTitle  && 
+                             <Label pointing>{stateTitle}</Label>}
                             </Form.Field>
                             <Form.Field>
 
-                            {stateContent  && 
-                            <Message
-                              error={stateContent}
-                              header='Kontakt'
-                              content={stateContent}
-                            />}
-
                             <label>Kontakt</label>
-                            <input
+
+                            <Form.Input
                               placeholder="Kontakt"
                               type="text"
                               name="content"
+                              value={this.state.contact.content}
                               onChange={this.handleChange}/>
+                               {stateContent  && 
+                              <Label pointing>{stateContent}</Label>}
                             </Form.Field>
                             
                             <Button type='submit'>Zapisz</Button>
@@ -241,9 +294,6 @@ render(){
           <List animated selection divided relaxed> 
     
           {contacts}
-      
-     
-          
           
           </List>
 
