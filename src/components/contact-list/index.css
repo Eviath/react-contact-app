@@ -23,3 +23,13 @@ form.ui.form {
     opacity: 0.01;
     transition: opacity 300ms ease-in;
   }
+
+  .ui.list .list>.item .header, .ui.list>.item .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ui.list .list>.item .header, .ui.list>.item .header img {
+    padding: 10px;
+    width: 80%;
+  }
