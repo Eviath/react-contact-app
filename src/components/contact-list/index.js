@@ -13,7 +13,7 @@ export default class ContactsList extends React.Component {
             contacts: [
                 {
                     title: 'Jacek',
-                    content: '732011132',
+                    content: '23232324',
                     key: '234235235325',
                     id: '325325235324',
                     img: 'https://api.adorable.io/avatars/55/typeofweb1.png',
@@ -261,22 +261,7 @@ export default class ContactsList extends React.Component {
 
             <div>
 
-                <Card>
-    <Image src='/images/avatar/large/matthew.png' />
-    <Card.Content>
-      <Card.Header>{this.state.activeContact.title}</Card.Header>
-      <Card.Meta>
-        <span className='date'>{this.state.activeContact.createdAt}</span>
-      </Card.Meta>
-      <Card.Description>{this.state.activeContact.content}</Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
+
 
                 <header className="ui menu">
                     <nav className="ui container">
