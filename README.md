@@ -18,11 +18,18 @@
 
 
 
-![todoapp](https://i.imgur.com/NNPjJkl.png)
+![contactapp](https://i.imgur.com/rRNOGrt.png)
+
+> Author
+Application created by https://eviathos.pl
+
+> License
+All rights reserved.
 
 
+---
 
-
+## APP INFORMATION
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
