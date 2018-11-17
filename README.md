@@ -21,9 +21,11 @@
 ![contactapp](https://i.imgur.com/rRNOGrt.png)
 
 > Author
+
 Application created by https://eviathos.pl
 
 > License
+
 All rights reserved.
 
 
