@@ -1,6 +1,27 @@
 
-## GITHUBPAGES
-https://eviath.github.io/react-contact-app/
+# Contact Book Application built with React
+
+> Application live on GITHUBPAGES
+- https://eviath.github.io/react-contact-app/
+
+# About Project
+
+> Core
+
+- React
+- SemanticUI
+
+> Features
+
+- Add new contacts with title & content
+- Remove contacts
+
+
+
+![todoapp](https://i.imgur.com/NNPjJkl.png)
+
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
